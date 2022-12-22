@@ -1,9 +1,9 @@
-import React from 'react';
-import PropTypes from 'prop-types';
 import Task from './Task';
 import './TaskList.css';
+import React from 'react';
+import PropTypes from 'prop-types';
 
-const TaskList = ({ tasks }) => {
+const TaskList = ({ tasks, setComplete, deleteTask }) => {
   const getTaskListJSX = (tasks) => {
     return tasks.map((task) => {
       return (
@@ -12,6 +12,8 @@ const TaskList = ({ tasks }) => {
           id={task.id}
           title={task.title}
           isComplete={task.isComplete}
+          setComplete={setComplete}
+          deleteTask={deleteTask}
         />
       );
     });
@@ -26,7 +28,9 @@ TaskList.propTypes = {
       title: PropTypes.string.isRequired,
       isComplete: PropTypes.bool.isRequired,
     })
-  ).isRequired,
+  ),
+  setComplete: PropTypes.func.isRequired,
+  deleteTask: PropTypes.func.isRequired,
 };
 
 export default TaskList;
